@@ -1,0 +1,40 @@
+ext.scalaVer = "2.10.5"
+
+repositories {
+    mavenCentral()
+}
+
+apply plugin: 'scala'
+apply plugin: 'idea'
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'base'
+version = '1.0'
+mainClassName='main.scala.ImpalaJdbcSelect'
+
+dependencies {
+    compile files('./src/libs/ImpalaJDBC4.jar')
+    compile files('./src/libs/hive_metastore.jar')
+    compile files('./src/libs/hive_service.jar')
+    compile files('./src/libs/libfb303-0.9.0.jar')
+    compile files('./src/libs/libthrift-0.9.0.jar')
+    compile files('./src/libs/log4j-1.2.14.jar')
+    compile files('./src/libs/ql.jar')
+    compile files('./src/libs/slf4j-api-1.5.8.jar')
+    compile files('./src/libs/slf4j-log4j12-1.5.8.jar')
+    compile files('./src/libs/TCLIServiceClient.jar')
+    compile ('org.scala-lang:scala-library:2.10.5')
+}
+
+jar {
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    } {
+        exclude "META-INF/*.SF"
+        exclude "META-INF/*.DSA"
+        exclude "META-INF/*.RSA"
+    }
+    manifest {
+        attributes 'Main-Class': mainClassName
+    }
+}

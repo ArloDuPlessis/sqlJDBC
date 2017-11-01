@@ -1,8 +1,7 @@
 .idea/
 .gradle/
 out/
-**/build/
-**/target/
-**/*.iml
+build/
+target/
+*.iml
 **/.DS_Store
-git config
