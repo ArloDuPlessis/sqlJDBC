@@ -6,8 +6,7 @@ object ImpalaJdbcSelect {
 
   /** pass it a connectionString that looks like the part of the url after "jdbc:impala://" **/
   def main(args: Array[String]): Unit = {
-    val url = if (args.nonEmpty) s"jdbc:impala://${args(0)}"
-      else "jdbc:impala://cloudera-mgr.stage.atl.impactradius.net:25003;AuthMech=1;KrbRealm=STAGE.IMPACTRADIUS.COM;KrbHostFQDN=cloudera-mgr.stage.atl.impactradius.net;KrbServiceName=impala"
+    val url = s"jdbc:impala://${args(0)}"
 
     var connection: Connection = null
 
